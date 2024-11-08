@@ -2,7 +2,7 @@ $work_item = Read-Host "Enter the Work Item ID"
 
 $base_path = "C:\tfsaz\CI\Squads\Toll\Devs\Jonas\$($work_item)"
 
-$dev_branches = Get-ChildItem -Path $base_path -Directory | Where-Object { $_.Name -notlike "_references*" } | Select-Object -ExpandProperty FullName
+$dev_branches = @(Get-ChildItem -Path $base_path -Directory | Where-Object { $_.Name -notlike "_references*" } | Select-Object -ExpandProperty FullName)
 $squad_branches = @()
 
 foreach ($item in $dev_branches) {
