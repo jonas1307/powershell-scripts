@@ -11,16 +11,16 @@ foreach ($item in $dev_branches) {
 }
 
 Write-Host "Getting $($base_path)"
-tf get $base_path /recursive /version:T
+tf get "$($base_path)" /recursive /version:T
 
 for ($i = 0; $i -lt $dev_branches.Count; $i++) {
     
     # Write-Host "Getting $($dev_branches[$i])"
-    # tf get $dev_branches[$i] /recursive /version:T
+    # tf get "$($dev_branches[$i])" /recursive /version:T
 
     Write-Host "Getting $($squad_branches[$i])"
-    tf get $squad_branches[$i] /recursive /version:T
+    tf get "$($squad_branches[$i])" /recursive /version:T
     
     Write-Host "Merging $($dev_branches[$i]) to $($squad_branches[$i])"
-    tf merge $dev_branches[$i] $squad_branches[$i] /recursive /version:T /noprompt
+    tf merge "$($dev_branches[$i])" "$($squad_branches[$i])" /recursive /version:T /noprompt
 }
