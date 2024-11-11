@@ -1,4 +1,4 @@
-$base_path = "C:\tfsaz\CI\Squads\Toll"
+$base_path = "C:\eqaz\CI\Squads\Toll"
 
 $ci_branches = @()
 $squad_branches = @(
