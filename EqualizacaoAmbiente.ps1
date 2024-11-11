@@ -37,13 +37,17 @@ foreach ($item in $squad_branches) {
     $ci_branches += $item
 }
 
+Write-Host "Script run starting on $(Get-Date -Format "yyyy/MM/dd HH:mm:ss")"
+
 for ($i = 0; $i -lt $squad_branches.Count; $i++) {
-    Write-Host "Getting $($ci_branches[$i])"
-    tf get $ci_branches[$i] /recursive /version:T
+    Write-Host "Getting $($ci_branches[$i]) [$($i + 1)/$($squad_branches.Count)]"
+    tf get $ci_branches[$i] /recursive
 
-    Write-Host "Getting $($squad_branches[$i])"
-    tf get $squad_branches[$i] /recursive /version:T
+    Write-Host "Getting $($squad_branches[$i]) [$($i + 1)/$($squad_branches.Count)]"
+    tf get $squad_branches[$i] /recursive
 
-    Write-Host "Merging $($ci_branches[$i]) to $($squad_branches[$i])"
-    tf merge $ci_branches[$i] $squad_branches[$i] /recursive /version:T /noprompt
+    Write-Host "Merging $($ci_branches[$i]) to $($squad_branches[$i]) [$($i + 1)/$($squad_branches.Count)]"
+    tf merge $ci_branches[$i] $squad_branches[$i] /recursive /noprompt
 }
+
+Write-Host "Finished script run on $(Get-Date -Format "yyyy/MM/dd HH:mm:ss")"
